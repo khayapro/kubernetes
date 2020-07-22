@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: redis
+  labels:
+     app: my-redis
+     type: storage
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: rc-pod-redis
+      labels:
+        type: storage
+    spec:
+      containers:
+      - name: redis
+        image: redis
+  selector:
+    matchLabels:
+      type: storage

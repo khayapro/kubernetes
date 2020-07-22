@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-redis
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: rc-pod-redis
+      labels:
+        app: storage
+    spec:
+      containers:
+      - name: redis
+        image: redis
