@@ -7,12 +7,17 @@ metadata:
     type: front-end
 spec:
   containers:
-    - name: nginx-container
-      image: nginx
-    resource:
-      request:
+  - name: nginx-container
+    image: nginx
+    resources:
+      requests:
         memory: "1Gi"
         cpu: 1
-      limit:
+      limits:
         memory: "2Gi"
         cpu: 2
+  tolerations:
+  - key: "my-app"
+    operator: "Equal"
+    value: "front-end"
+    effect: "NoSchedule"
