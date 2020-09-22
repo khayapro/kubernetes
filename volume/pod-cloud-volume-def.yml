@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app
+  labels:
+    app: cloud-volume
+spec:
+  volumes:
+    - name: data
+      azureFile:
+        secretName: secret-name
+        shareName: share-name
+        readOnly: true
+  containers:
+    - name: my-app
+      image: someImage
+      volumeMounts:
+        - name: data
+          mountPath: /data/storage
+        
